@@ -104,11 +104,6 @@ struct GoalCount {
 
 extension Date {
     func isSameDay(as other: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day], from: self, to: other)
-        if diff.day == 0 {
-            return true
-        } else {
-            return false
-        }
+        return Calendar.autoupdatingCurrent.isDate(self, inSameDayAs: other)
     }
 }
