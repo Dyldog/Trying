@@ -16,6 +16,10 @@ class ViewModel: NSObject, ObservableObject {
     override init() {
         super.init()
         reload()
+        
+        NotificationCenter.default.addObserver(forName: .goalsUpdated, object: nil, queue: .main) { [weak self] _ in
+            self?.reload()
+        }
     }
     
     private func reload() {

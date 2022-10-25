@@ -14,15 +14,15 @@ struct GoalCountView: View {
         HStack(spacing: 0) {
             ForEach(counts.sorted(by: { $0.date < $1.date }), id: \.date) { count in
                 VStack(spacing: 0) {
-                    ForEach(0 ..< count.missingCount) { _ in
+                    ForEach(0 ..< count.missingCount, id: \.self) { _ in
                         Rectangle().foregroundColor(.white)
                     }
                     
-                    ForEach(0 ..< count.didntCount) { _ in
+                    ForEach(0 ..< count.didntCount, id: \.self) { _ in
                         Rectangle().foregroundColor(.red)
                     }
                     
-                    ForEach(0 ..< count.didCount) { _ in
+                    ForEach(0 ..< count.didCount, id: \.self) { _ in
                         Rectangle().foregroundColor(.green)
                     }
                 }

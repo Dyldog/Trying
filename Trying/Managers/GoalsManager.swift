@@ -7,6 +7,10 @@
 
 import Foundation
 
+extension Notification.Name {
+    static var goalsUpdated: NSNotification.Name = .init(rawValue: "GOALS_UPDATED")
+}
+
 class GoalsManager {
     static var shared: GoalsManager = .init()
     
@@ -20,7 +24,9 @@ class GoalsManager {
     init() {
         goals = fileManager.getFromFiles(.goals) ?? []
         completionDates = fileManager.getFromFiles(.completions) ?? []
-        
+    }
+    
+    private func addDummyData() {
         (0 ..< 100).forEach { (index: Int) in
             let date = Date.now.addingTimeInterval(TimeInterval(60 * 60 * 24 * index))
             goals.forEach { goal in
@@ -33,20 +39,30 @@ class GoalsManager {
         }
     }
     
+    private func saveGoals() {
+        fileManager.save(try! JSONEncoder().encode(goals), to: .goals)
+        NotificationCenter.default.post(name: .goalsUpdated, object: nil)
+    }
+    
+    private func saveCompletions() {
+        fileManager.save(try! JSONEncoder().encode(completionDates), to: .completions)
+        NotificationCenter.default.post(name: .goalsUpdated, object: nil)
+    }
+    
     func addGoal(_ goal: Goal) {
         goals.append(goal)
-        fileManager.save(try! JSONEncoder().encode(goals), to: .goals)
+        saveGoals()
     }
     
     func updateGoal(_ goal: Goal) {
         goals = goals.filter { $0.id != goal.id } + [goal]
-        fileManager.save(try! JSONEncoder().encode(goals), to: .goals)
+        saveGoals()
     }
     
     func markAction(_ action: Action, done: Bool) {
         let newCompletion: Completion = .init(id: action.id, date: .now, did: done)
         completionDates = completionDates.filter { !(action.id == $0.id && $0.date.isSameDay(as: .now)) } + [newCompletion]
-        fileManager.save(try! JSONEncoder().encode(completionDates), to: .completions)
+        saveCompletions()
     }
     
     func completions(for goal: Goal) -> [ActionCompletion] {
@@ -66,8 +82,8 @@ class GoalsManager {
         let actionIDs = goal.actions.map { $0.id }
         completionDates = completionDates.filter { actionIDs.contains($0.id) == false }
         
-        fileManager.save(try! JSONEncoder().encode(goals), to: .goals)
-        fileManager.save(try! JSONEncoder().encode(completionDates), to: .completions)
+        saveGoals()
+        saveCompletions()
     }
     
     func stats(for goal: Goal) -> [GoalCount] {
