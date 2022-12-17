@@ -27,6 +27,8 @@
 		115D6C49290647DA002F59D1 /* Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6C48290647DA002F59D1 /* Completion.swift */; };
 		115D6C4F29065677002F59D1 /* Array+CountWhere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6C4E29065677002F59D1 /* Array+CountWhere.swift */; };
 		115D6C5129065719002F59D1 /* GoalCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D6C5029065719002F59D1 /* GoalCountView.swift */; };
+		1172D24B294D36BD00E8078A /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172D24A294D36BD00E8078A /* SnapshotHelper.swift */; };
+		1172D24D294D37FF00E8078A /* UIApplication+IsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1172D24C294D37FF00E8078A /* UIApplication+IsTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		115D6C4C29064BE8002F59D1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		115D6C4E29065677002F59D1 /* Array+CountWhere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+CountWhere.swift"; sourceTree = "<group>"; };
 		115D6C5029065719002F59D1 /* GoalCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCountView.swift; sourceTree = "<group>"; };
+		1172D24A294D36BD00E8078A /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		1172D24C294D37FF00E8078A /* UIApplication+IsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+IsTest.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,7 @@
 		115D6C1E29060E66002F59D1 /* TryingUITests */ = {
 			isa = PBXGroup;
 			children = (
+				1172D24A294D36BD00E8078A /* SnapshotHelper.swift */,
 				115D6C1F29060E66002F59D1 /* TryingUITests.swift */,
 				115D6C2129060E66002F59D1 /* TryingUITestsLaunchTests.swift */,
 			);
@@ -230,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				115D6C4E29065677002F59D1 /* Array+CountWhere.swift */,
+				1172D24C294D37FF00E8078A /* UIApplication+IsTest.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 				115D6C3E29064721002F59D1 /* ListViewModel.swift in Sources */,
 				115D6C47290647C2002F59D1 /* AddGoalViewModel.swift in Sources */,
 				115D6C4129064734002F59D1 /* Goal.swift in Sources */,
+				1172D24D294D37FF00E8078A /* UIApplication+IsTest.swift in Sources */,
 				115D6C0529060E64002F59D1 /* TryingApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +403,7 @@
 			files = (
 				115D6C2029060E66002F59D1 /* TryingUITests.swift in Sources */,
 				115D6C2229060E66002F59D1 /* TryingUITestsLaunchTests.swift in Sources */,
+				1172D24B294D36BD00E8078A /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

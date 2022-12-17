@@ -14,6 +14,7 @@ struct TryingApp: App {
             NavigationView {
                 ContentView()
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

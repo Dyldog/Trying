@@ -5,7 +5,7 @@
 //  Created by Dylan Elliott on 24/10/2022.
 //
 
-import Foundation
+import UIKit
 
 extension Notification.Name {
     static var goalsUpdated: NSNotification.Name = .init(rawValue: "GOALS_UPDATED")
@@ -24,9 +24,24 @@ class GoalsManager {
     init() {
         goals = fileManager.getFromFiles(.goals) ?? []
         completionDates = fileManager.getFromFiles(.completions) ?? []
+        
+        if UIApplication.isUITest {
+            addDummyData()
+        }
     }
     
     private func addDummyData() {
+        goals = [
+            .init(id: .init(), title: "Get Fit", actions: [
+                .init(title: "Lift weights"), .init(title: "Go for a run"), .init(title: "Take steroids"),
+            ]),
+            .init(id: .init(), title: "Keep Learning", actions: [
+                .init(title: "A"), .init(title: "B"), .init(title: "C"), .init(title: "D"),
+            ])
+        ]
+        
+        completionDates = []
+        
         (0 ..< 100).forEach { (index: Int) in
             let date = Date.now.addingTimeInterval(TimeInterval(60 * 60 * 24 * index))
             goals.forEach { goal in

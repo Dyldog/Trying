@@ -30,19 +30,22 @@ extension URL {
 class AppFileManager {
     static let shared: AppFileManager = .init()
     
-    let driveURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)!.appendingPathComponent("Documents")
+    let driveURL = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents")
     
     private func createFolder(_ location: AppFolder) {
+        guard let driveURL = driveURL else { return }
         try! FileManager.default.createDirectory(at: driveURL.appendingPathComponent(location), withIntermediateDirectories: true)
     }
     
     func save(_ data: Data, to location: AppFile) {
+        guard let driveURL = driveURL else { return }
         createFolder(location.parent)
         let fileURL = driveURL.appendingPathComponent(location)
         try! data.write(to: fileURL)
     }
     
     func getData(_ location: AppFile) -> Data? {
+        guard let driveURL = driveURL else { return nil }
         let fileURL = driveURL.appendingPathComponent(location)
         return try? Data(contentsOf: fileURL)
     }

@@ -55,17 +55,19 @@ struct ContentView: View {
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                     }
+                    
+                    Rectangle().foregroundColor(.clear).frame(height: 10)
                 }
             }
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
-        .popover(item: $viewModel.addViewModel, content: { viewModel in
+        .sheet(item: $viewModel.addViewModel, content: { viewModel in
             NavigationView {
                 AddGoalView(viewModel: viewModel)
             }
         })
-        .popover(item: $viewModel.detailViewModel, content: { viewModel in
+        .sheet(item: $viewModel.detailViewModel, content: { viewModel in
             NavigationView {
                 GoalDetailView(viewModel: viewModel)
             }
