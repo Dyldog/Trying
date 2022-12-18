@@ -62,6 +62,7 @@ struct ContentView: View {
         }
         .navigationBarTitle("")
         .navigationBarHidden(true)
+        .navigationViewStyle(.stack)
         .sheet(item: $viewModel.addViewModel, content: { viewModel in
             NavigationView {
                 AddGoalView(viewModel: viewModel)
